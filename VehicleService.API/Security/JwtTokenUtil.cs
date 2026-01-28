@@ -13,7 +13,7 @@ namespace VehicleService.API.Security
 
         public JwtTokenUtil(IConfiguration config)
         {
-            _config = config;
+            _config = config;  /reads from appsettings.json
         }
 
         public string GenerateToken(User user)
