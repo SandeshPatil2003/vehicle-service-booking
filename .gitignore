@@ -1,0 +1,30 @@
+# ======================
+# Frontend env files
+# ======================
+.env
+*.env
+
+# ======================
+# Backend secrets
+# ======================
+appsettings.Development.json
+
+# ======================
+# Node / React
+# ======================
+node_modules/
+dist/
+build/
+
+# ======================
+# Logs
+# ======================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
