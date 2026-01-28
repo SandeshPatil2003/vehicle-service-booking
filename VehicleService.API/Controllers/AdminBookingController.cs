@@ -17,6 +17,7 @@ namespace VehicleService.API.Controllers.Admin
         }
 
         // GET: /api/admin/bookings
+        //
         [HttpGet]
         public async Task<IActionResult> GetAllBookings()
         {
