@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VehicleService.API.Services.Interfaces;
 
+//Admin Controller
 namespace VehicleService.API.Controllers.Admin
 {
     [ApiController]
@@ -17,7 +18,6 @@ namespace VehicleService.API.Controllers.Admin
         }
 
         // GET: /api/admin/bookings
-        //
         [HttpGet]
         public async Task<IActionResult> GetAllBookings()
         {
