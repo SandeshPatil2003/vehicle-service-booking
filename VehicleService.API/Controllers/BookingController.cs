@@ -34,6 +34,7 @@ namespace VehicleService.API.Controllers
             return CreatedAtAction(nameof(GetMyBookings), booking);
         }
 
+
         // GET: api/bookings/my-bookings
         [HttpGet("my-bookings")]
         public async Task<IActionResult> GetMyBookings()

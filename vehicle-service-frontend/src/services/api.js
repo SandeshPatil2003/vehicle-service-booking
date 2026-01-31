@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 // const API_BASE_URL = 'http://localhost:8081/api'; // for spring boot backend
-const API_BASE_URL = 'https://localhost:44357/api';
-
-const PAYMENT_SERVICE_URL = 'https://localhost:44357/api';
-
+//const API_BASE_URL = 'https://localhost:44357/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//const PAYMENT_SERVICE_URL = 'https://localhost:44357/api';
+const PAYMENT_SERVICE_URL = API_BASE_URL;
 
 // Create axios instance with default config
 const api = axios.create({

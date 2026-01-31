@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using VehicleService.API.DTOs;
 using VehicleService.API.Services.Interfaces;
 
-//Payment Controller Class
-
 namespace VehicleService.API.Controllers
 {
     [ApiController]

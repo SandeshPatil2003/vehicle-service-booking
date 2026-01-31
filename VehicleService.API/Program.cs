@@ -22,7 +22,7 @@ using VehicleService.API.Security;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 using System.Text.Json.Serialization;
-
+using VehicleService.API.BackgroundJobsScheduler;
 
 namespace VehicleService.API
 {
@@ -32,17 +32,37 @@ namespace VehicleService.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            // for deployment and aws connection
+
+            builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
+
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.ListenAnyIP(5000);
+            });
+
+
             // Add services to the container.
 
             //builder.Services.AddControllers();
 
-                builder.Services.AddControllers()
+            builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.Converters.Add(
                 new JsonStringEnumConverter()
             );
         });
+
+            //schedular 
+            builder.Services.AddScoped<IMechanicAllocator, MechanicAllocator>();
+            builder.Services.AddHostedService<MechanicAllocationWorker>();
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -60,6 +80,11 @@ namespace VehicleService.API
             );
 
 
+            //  builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            /*  options.UseSqlServer(
+              builder.Configuration.GetConnectionString("DefaultConnection")));*/
+
+
 
             builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -68,6 +93,13 @@ namespace VehicleService.API
     });
 
 
+
+            /*   builder.Services.AddScoped<IUserRepository, UserRepository>();
+               builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+               builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+               builder.Services.AddScoped<IPasswordResetTokenRepository, PasswordResetTokenRepository>();
+               builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+   */
             // ================= REPOSITORIES =================
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
@@ -86,11 +118,110 @@ namespace VehicleService.API
 
             builder.Services.AddScoped<IPaymentService, PaymentService>();
 
+            builder.Services.AddScoped<IMechanicAllocator, MechanicAllocator>();
+            builder.Services.AddHostedService<MechanicAllocationWorker>();
+
 
             // ================= JWT =================
             builder.Services.AddScoped<JwtTokenUtil>();
 
             builder.Services.AddHostedService<DemoDataSeeder>();
+
+
+
+            /* builder.Services.AddScoped<IUserService, UserService>();
+             builder.Services.AddScoped<IEmailService, EmailService>();
+
+             builder.Services.AddScoped<IBookingService, BookingService>();
+             builder.Services.AddScoped<IMechanicService, MechanicService>();
+             builder.Services.AddScoped<IServiceService, ServiceService>();
+
+             builder.Services.AddHostedService<DemoDataSeeder>();
+             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+ */
+
+
+
+
+
+
+
+            /*  builder.Services.AddScoped<IAuthService, AuthService>();
+              builder.Services.AddScoped<IUserService, UserService>();
+              builder.Services.AddScoped<IEmailService, EmailService>();
+              builder.Services.AddSingleton<JwtTokenUtil>();*/
+
+
+            /*var jwtSettings = builder.Configuration.GetSection("Jwt");
+
+            var key = jwtSettings["Key"];
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new Exception("JWT Key is missing in appsettings.json");
+            }
+
+         *//*   builder.Services.AddAuthentication("Bearer")
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = jwtSettings["Issuer"],
+                        ValidAudience = jwtSettings["Audience"],
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(
+                                Encoding.UTF8.GetBytes(key)
+                            )
+                    };
+                });*//*
+
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"])
+        ),
+
+        ClockSkew = TimeSpan.Zero
+    };
+
+    // ✅ This replaces JwtAuthenticationEntryPoint
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.ContentType = "application/json";
+
+            var response = new
+            {
+                error = "Unauthorized",
+                message = "Authentication required"
+            };
+
+            return context.Response.WriteAsync(
+                JsonSerializer.Serialize(response)
+            );
+        }
+    };
+});
+*/
 
             var jwtSettings = builder.Configuration.GetSection("Jwt");
             var key = jwtSettings["Key"];
@@ -212,6 +343,8 @@ namespace VehicleService.API
 
 
             app.MapControllers();
+            //  FOR ELASTIC BEANSTALK
+            app.Urls.Add("http://*:5000");
 
             app.Run();
         }

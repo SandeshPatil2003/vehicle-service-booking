@@ -80,6 +80,9 @@ namespace VehicleService.API.Repositories.Implementations
         public async Task<List<Booking>> GetUnassignedPendingBookingsAsync()
         {
             return await _context.Bookings
+                .Include(b => b.Service)
+                .Include(b => b.Mechanic)
+                .ThenInclude(m => m.User)
                 .Where(b =>
                     b.Status == BookingStatus.PENDING &&
                     b.MechanicId == null

@@ -2,9 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <!-- Add this to publish for Linux 
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>-->
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove=".ebextensions\**" />
+    <Content Remove=".ebextensions\**" />
+    <EmbeddedResource Remove=".ebextensions\**" />
+    <None Remove=".ebextensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".ebextensions\environment.config" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
@@ -15,7 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.20">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

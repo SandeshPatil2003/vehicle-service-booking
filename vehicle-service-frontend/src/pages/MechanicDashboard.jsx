@@ -81,11 +81,11 @@ const MechanicDashboard = () => {
                   Welcome, {user?.firstName}! Manage your assigned jobs here.
                 </p>
               </Col>
-              <Col md={4} className="text-md-end">
+              {/* <Col md={4} className="text-md-end">
                 <Badge bg="dark" className="fs-6 px-3 py-2">
                   Rating: 4.8/5
                 </Badge>
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </div>
@@ -289,7 +289,7 @@ const MechanicDashboard = () => {
                       className="mb-2"
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <small className="text-muted d-block">Customer Rating</small>
                     <div className="d-flex align-items-center">
                       <span className="text-warning me-2">
@@ -301,7 +301,7 @@ const MechanicDashboard = () => {
                       </span>
                       <span>4.8/5.0</span>
                     </div>
-                  </div>
+                  </div> */}
                 </Card.Body>
               </Card>
             </Col>

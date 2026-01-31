@@ -1104,7 +1104,7 @@ const Home = () => {
         </section>
 
         {/* ================= FOOTER ================= */}
-        <footer className="py-4">
+        {/* <footer className="py-4">
           <Container>
             <Row className="text-white">
               <Col md={6}>
@@ -1126,7 +1126,51 @@ const Home = () => {
               </Col>
             </Row>
           </Container>
-        </footer>
+        </footer> */}
+
+        <footer className="py-4">
+  <Container>
+    <Row className="text-white">
+
+ {/* LEFT: SYSTEM INFO + ADDRESS */}
+<Col md={6}>
+  <h5>📍 Vehicle Service Showroom</h5>
+
+  <p className="mb-1 opacity-75">
+    Ground Floor, Orion Auto Plaza,<br />
+    Ring Road, Near City Mall,<br />
+    Baner, Pune – 411045,<br />
+    Maharashtra, India
+  </p>
+
+ 
+  <p className="mb-1 opacity-75">
+  📞 +91 98765 43210 <br />
+  🕘 Mon–Sat: 9:00 AM – 7:00 PM
+</p>
+ <p className="mb-0 opacity-75 ">
+    © 2026 Vehicle Service System
+  </p>
+</Col>
+
+
+      {/* RIGHT: LINKS */}
+      <Col md={6} className="text-md-end">
+        <Link to="/contact" className="text-white me-3">
+          Contact
+        </Link>
+        <Link to="/privacy" className="text-white me-3">
+          Privacy
+        </Link>
+        <Link to="/terms" className="text-white">
+          Terms
+        </Link>
+      </Col>
+
+    </Row>
+  </Container>
+</footer>
+
 
       </div>
     </>

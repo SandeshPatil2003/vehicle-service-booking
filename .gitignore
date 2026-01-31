@@ -44,3 +44,10 @@ obj/
 *.vsidx
 *.bin
 
+
+# .NET publish output
+publish/
+
+# Environment files
+.env
+.env.*

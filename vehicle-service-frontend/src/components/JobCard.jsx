@@ -102,13 +102,13 @@ const JobCard = ({ job, onUpdate }) => {
             >
               {nextStatus === 'IN_PROGRESS' ? 'Start Job' : 'Mark Complete'}
             </Button>
-            <Button 
+            {/* <Button 
               variant="outline-secondary" 
               size="sm"
               onClick={() => console.log('View details')}
             >
               View Details
-            </Button>
+            </Button> */}
           </div>
         )}
 

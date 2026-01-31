@@ -211,7 +211,7 @@ const BookingHistory = () => {
             <Card className="text-center">
               <Card.Body>
                 <h5 className="text-success">
-                  {bookings.filter(b => b.status === 'PAID').length}
+                  {bookings.filter(b => b.paymentStatus === 'PAID').length}
                 </h5>
                 <small className="text-muted">Completed</small>
               </Card.Body>
@@ -282,7 +282,7 @@ const BookingHistory = () => {
                     <td>₹{booking.totalAmount}</td>
                     <td>
                       {booking.mechanic ? 
-                        `${booking.mechanic.user?.firstName}` : 
+                        `${booking.mechanic.firstName}`  : 
                         <span className="text-muted">Not assigned</span>
                       }
                     </td>

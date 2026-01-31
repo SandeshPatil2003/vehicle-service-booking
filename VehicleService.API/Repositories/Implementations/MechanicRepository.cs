@@ -59,7 +59,9 @@ namespace VehicleService.API.Repositories.Implementations
                 .Where(m =>
                     m.SkillLevel == skillLevel &&
                     m.IsAvailable &&
-                    m.CurrentJobCount < m.MaxJobs)
+                    m.CurrentJobCount < m.MaxJobs &&
+                    m.SkillLevel == skillLevel)
+                .OrderBy(m => m.CurrentJobCount)
                 .ToListAsync();
         }
 
@@ -90,6 +92,7 @@ namespace VehicleService.API.Repositories.Implementations
         {
             _context.Mechanics.Update(mechanic);
             await Task.CompletedTask;
+            await _context.SaveChangesAsync();
         }
 
         public async Task SaveChangesAsync()

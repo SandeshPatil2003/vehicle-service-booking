@@ -103,8 +103,8 @@ namespace VehicleService.API.Services.Implementations
             var mechanics = await _mechanicRepository
                 .GetAvailableBySkillAsync(service.RequiredSkill);
 
-            if (!mechanics.Any())
-                mechanics = await _mechanicRepository.GetAvailableAndNotFullAsync();
+            /*if (!mechanics.Any())
+                mechanics = await _mechanicRepository.GetAvailableAndNotFullAsync();*/
 
             return mechanics.FirstOrDefault();
         }
@@ -131,8 +131,21 @@ namespace VehicleService.API.Services.Implementations
             else if (status == BookingStatus.COMPLETED)
             {
                 booking.CompletedAt = DateTime.UtcNow;
-                booking.PaymentStatus = PaymentStatus.PENDING; 
-              await CreatePaymentAsync(booking);
+                booking.PaymentStatus = PaymentStatus.PENDING;
+
+                var mechanic = booking.Mechanic;
+
+                mechanic.CurrentJobCount--;
+
+                if (mechanic.CurrentJobCount < 0)
+                    mechanic.CurrentJobCount = 0;
+
+                if (mechanic.CurrentJobCount < mechanic.MaxJobs)
+                    mechanic.IsAvailable = true;
+
+                await _mechanicRepository.UpdateAsync(mechanic);
+
+                await CreatePaymentAsync(booking);
             }
             else if (status == BookingStatus.CANCELLED)
             {

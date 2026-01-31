@@ -167,22 +167,7 @@ const Login = () => {
                 </p>
               </div>
               
-              {/* Demo Credentials */}
-              <div className="mt-4 p-3 bg-light rounded">
-                <small className="text-muted d-block mb-2">
-                  <strong>Demo Credentials:</strong>
-                </small>
-                <small className="text-muted d-block mb-1">
-                  Admin: admin@vehicleservice.com / Admin@123
-                </small>
-                <small className="text-muted d-block mb-1">
-                  Customer: customer@example.com / Customer@123
-                </small>
-                <small className="text-muted d-block">
-                  Mechanic: mechanic@example.com / Mechanic@123
-                </small>
-              </div>
-            </Card.Body>
+             </Card.Body>
           </Card>
         </Col>
       </Row>

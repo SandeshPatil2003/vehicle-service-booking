@@ -157,6 +157,19 @@ const EditBooking = () => {
     );
   }
 
+
+  const today = new Date();
+const todayDate = today.toISOString().split('T')[0];
+
+const getMinTime = () => {
+  if (formData.bookingDate === todayDate) {
+    const now = new Date();
+    return now.toTimeString().slice(0, 5); // HH:mm
+  }
+  return "00:00";
+};
+
+
   return (
     <>
       <CustomNavbar />
@@ -216,7 +229,9 @@ const EditBooking = () => {
                         type="date"
                         name="bookingDate"
                         value={formData.bookingDate}
+                         min={todayDate}
                         onChange={handleChange}
+                        
                         isInvalid={!!errors.bookingDate}
                       />
                     </Col>
@@ -225,7 +240,9 @@ const EditBooking = () => {
                         type="time"
                         name="bookingTime"
                         value={formData.bookingTime}
+                        min={getMinTime()}
                         onChange={handleChange}
+
                         isInvalid={!!errors.bookingTime}
                       />
                     </Col>

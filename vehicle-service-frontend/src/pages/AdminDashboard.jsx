@@ -419,7 +419,7 @@ const handleToggleUserStatus = async (userId) => {
                       <th>Specialization</th>
                       <th>Availability</th>
                       <th>Jobs</th>
-                      <th>Rating</th>
+                      {/* <th>Rating</th> */}
                       {/* <th>Actions</th> */}
                     </tr>
                   </thead>
@@ -446,11 +446,11 @@ const handleToggleUserStatus = async (userId) => {
                         <td>
                           {mechanic.currentJobCount} / {mechanic.maxJobs}
                         </td>
-                        <td>
+                        {/* <td>
                           <span className="text-warning">
                             <i className="bi bi-star-fill"></i> {mechanic.rating || '0.0'}
                           </span>
-                        </td>
+                        </td> */}
                         {/* <td>
                           <Button variant="outline-primary" size="sm" className="me-1">
                             <i className="bi bi-eye"></i>
