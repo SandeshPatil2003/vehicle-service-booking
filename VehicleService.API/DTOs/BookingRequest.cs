@@ -32,6 +32,6 @@ namespace VehicleService.API.DTOs.Booking
 
         // [Required]
         [Required(ErrorMessage = "Booking time is required")]
-        public string BookingTime { get; set; }  // "10:30"
+        public string BookingTime { get; set;}  // "10:30"
     }
 }

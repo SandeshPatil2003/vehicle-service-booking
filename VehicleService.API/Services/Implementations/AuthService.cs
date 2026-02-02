@@ -64,7 +64,7 @@ namespace VehicleService.API.Services.Implementations
                 Phone = user.Phone
             };
         }
-
+            //Regist
         //  REGISTER
         public async Task RegisterAsync(RegisterRequest request)
         {
