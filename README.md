@@ -28,7 +28,7 @@ Presentation Layer – React.js frontend
 
 Application Layer – ASP.NET Core Web API
 
-Data Layer – MySQL database using Entity Framework Core
+Data Layer – MySQL database
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,6 +67,8 @@ AWS Elastic Beanstalk (Backend Hosting)
 
 AWS RDS (Database)
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 🔐 Authentication Flow
 
 User logs in with email & password.
@@ -78,6 +80,8 @@ JWT token is generated and returned.
 Frontend stores token and sends it in Authorization header.
 
 Backend validates token for protected endpoints.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 🚀 Deployment
 
