@@ -111,7 +111,8 @@ git clone https://github.com/your-username/vehicle-service-booking.git
 cd vehicle-service-booking
 
 2️⃣ Install Dependencies
-npm install
+
+    npm install
 
 3️⃣ Run the Server
 
