@@ -98,3 +98,21 @@ Handling CORS issues in cloud environments
 Deploying full-stack applications on AWS
 
 📸 Screenshots
+
+
+
+
+🚀 How to Run the Project
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/vehicle-service-booking.git
+
+cd vehicle-service-booking
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Run the Server
+npm start
+
+4️⃣ Open in Browser
+http://localhost:3000
