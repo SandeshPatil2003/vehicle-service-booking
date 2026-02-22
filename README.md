@@ -18,6 +18,8 @@ AutoCare Assist is a full-stack vehicle service booking web application that all
 
 🔄 CORS Handling for Frontend–Backend Communication
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 🏗 Architecture
 
 The project follows a 3-Tier Architecture:
@@ -27,6 +29,8 @@ Presentation Layer – React.js frontend
 Application Layer – ASP.NET Core Web API
 
 Data Layer – MySQL database using Entity Framework Core
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 🛠 Tech Stack
 Frontend
@@ -85,6 +89,8 @@ Database hosted on AWS RDS.
 
 Environment variables managed for production configuration.
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 📚 What I Learned
 
 Building REST APIs using ASP.NET Core
@@ -97,18 +103,15 @@ Handling CORS issues in cloud environments
 
 Deploying full-stack applications on AWS
 
-📸 Screenshots
-
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 🚀 How to Run the Project
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/your-username/vehicle-service-booking.git
+    git clone https://github.com/your-username/vehicle-service-booking.git
 
-cd vehicle-service-booking
+    cd vehicle-service-booking
 
 2️⃣ Install Dependencies
 
@@ -116,8 +119,8 @@ cd vehicle-service-booking
 
 3️⃣ Run the Server
 
-npm start
+    npm start
 
 4️⃣ Open in Browser
 
-http://localhost:3000
+    http://localhost:3000
